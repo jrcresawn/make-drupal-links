@@ -1,0 +1,49 @@
+#!/bin/bash
+
+function help {
+    echo 'Usage: make-drupal-links -d [DIRECTORY] -v [DRUPAL MAJOR VERSION NUMBER]'
+    echo 'Make links to create a site within a multi-site Drupal installation.'
+    echo ''
+    echo 'These are mandatory arguments.'
+    echo '  -d directory'
+    echo '  -v major Drupal version number (6, 7, etc.)'
+    echo ''
+}    
+
+if [ -z $1 ]; then
+    help
+    exit 1
+fi
+
+while getopts "d:v:" opt; do
+    case $opt in
+	d)
+	    dir=$OPTARG
+	    ;;
+	v)
+	    v=$OPTARG
+	    ;;
+	*)
+	    help
+	    exit 1
+	    ;;
+    esac
+done
+
+d=`dirname $dir`
+s=`basename $dir`
+
+mkdir -p $d/$s/sites/all
+mkdir -p $d/$s/sites/$s
+cd $d/$s
+ln -s /var/www/drupal/drupal$v/.htaccess
+ln -s /var/www/drupal/drupal$v/cron.php
+ln -s /var/www/drupal/drupal$v/install.php
+ln -s /var/www/drupal/drupal$v/update.php
+ln -s /var/www/drupal/drupal$v/misc
+ln -s /var/www/drupal/drupal$v/modules
+ln -s /var/www/drupal/drupal$v/profiles
+ln -s /var/www/drupal/drupal$v/scripts
+ln -s /var/www/drupal/drupal$v/themes
+cd $d/$s/sites
+ln -s /var/www/drupal/drupal$v/sites/default

@@ -36,14 +36,14 @@ s=`basename $dir`
 mkdir -p $d/$s/sites/all
 mkdir -p $d/$s/sites/$s
 cd $d/$s
-ln -s /var/www/drupal/drupal$v/.htaccess
-ln -s /var/www/drupal/drupal$v/cron.php
-ln -s /var/www/drupal/drupal$v/install.php
-ln -s /var/www/drupal/drupal$v/update.php
-ln -s /var/www/drupal/drupal$v/misc
-ln -s /var/www/drupal/drupal$v/modules
-ln -s /var/www/drupal/drupal$v/profiles
-ln -s /var/www/drupal/drupal$v/scripts
-ln -s /var/www/drupal/drupal$v/themes
+ln -s ../drupal/drupal$v/.htaccess
+ln -s ../drupal/drupal$v/cron.php
+ln -s ../drupal/drupal$v/install.php
+ln -s ../drupal/drupal$v/update.php
+ln -s ../drupal/drupal$v/misc
+ln -s ../drupal/drupal$v/modules
+ln -s ../drupal/drupal$v/profiles
+ln -s ../drupal/drupal$v/scripts
+ln -s ../drupal/drupal$v/themes
 cd $d/$s/sites
-ln -s /var/www/drupal/drupal$v/sites/default
+ln -s ../../drupal/drupal$v/sites/default
